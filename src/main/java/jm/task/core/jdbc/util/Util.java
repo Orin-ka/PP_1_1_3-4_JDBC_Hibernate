@@ -4,21 +4,39 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Util {
-    // реализуйте настройку соеденения с БД
-    private final static String urlDB = "jdbc:mysql://127.0.0.1:3306/test";
-    private final static String user = "root";
-    private final static String password = "root";
+public final class Util {
 
-    public static Connection getConnection () {
-        Connection connection = null;
+    private static final String URLDB = "jdbc:mysql://127.0.0.1:3306/test";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";
+    static Connection connection = null;
+
+    private Util() {
+    }
+
+
+    public static void openConnection () {
+        //Connection connection = null;
 
         try {
-            connection = DriverManager.getConnection(urlDB, user, password);
+            connection = DriverManager.getConnection(URLDB, USERNAME, PASSWORD);
             System.out.println("Подключение к БД выполнено");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
+        Util.connection = connection;
+    }
+
+
+    public static Connection getConnection () {
+        /*Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection(URLDB, USERNAME, PASSWORD);
+            System.out.println("Подключение к БД выполнено");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+        return Util.connection;
     }
 }
