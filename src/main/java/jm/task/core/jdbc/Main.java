@@ -11,14 +11,18 @@ public class Main {
         Util.openConnection();
 
         UserService userService = new UserServiceImpl();
+
         userService.createUsersTable();
-        userService.createUsersTable();
-        userService.saveUser("Lui", "De'Fines",  (byte)69);
-        userService.removeUserById(6);
+
+        userService.saveUser("Louis", "de Funès",  (byte)80);
+        userService.saveUser("Gerard", "Depardieu",  (byte)73);
+        userService.saveUser("Charlie", "Chaplin",  (byte)33);
+        userService.saveUser("Brigitte", "Bardot",  (byte)87);
+
+        userService.getAllUsers();
         userService.cleanUsersTable();
-        //userService.saveUser("Antonio", "Banderas",  (byte)69);
-        /*userService.dropUsersTable();
-        userService.dropUsersTable();*/
+        userService.dropUsersTable();
+
 
         try {
             Util.getConnection().close();
