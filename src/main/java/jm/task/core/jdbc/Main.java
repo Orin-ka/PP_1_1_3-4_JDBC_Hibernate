@@ -9,9 +9,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) {
         Util.openConnection();
-
         UserService userService = new UserServiceImpl();
-
         userService.createUsersTable();
 
         userService.saveUser("Louis", "de Funès",  (byte)80);
