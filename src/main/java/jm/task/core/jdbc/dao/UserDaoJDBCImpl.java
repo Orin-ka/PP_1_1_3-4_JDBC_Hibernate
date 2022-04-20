@@ -37,7 +37,7 @@ public class UserDaoJDBCImpl  implements UserDao {
                 DROP TABLE IF EXISTS users;
                 """;
 
-        try (Statement statement = connection.createStatement()) {
+        try (Statement statement = Util.getConnection().createStatement()) {
             statement.execute(query);
             System.out.println("Таблица users удалена");
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class UserDaoJDBCImpl  implements UserDao {
             VALUES (?, ?, ?);
             """;
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Util.getConnection().prepareStatement(query)) {
             statement.setString(1, name);
             statement.setString(2, lastName);
             statement.setByte(3, age);
@@ -68,7 +68,7 @@ public class UserDaoJDBCImpl  implements UserDao {
         String query = """
                 DELETE from users where id=?;
                 """;
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = Util.getConnection().prepareStatement(query)) {
             statement.setLong(1, id);
             statement.executeUpdate();
             System.out.println("User с id – " + id + " удален из базы данных");
@@ -88,7 +88,7 @@ public class UserDaoJDBCImpl  implements UserDao {
         String query = """
             SELECT * FROM users; 
             """;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (PreparedStatement preparedStatement = Util.getConnection().prepareStatement(query)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 id = resultSet.getLong(1);
