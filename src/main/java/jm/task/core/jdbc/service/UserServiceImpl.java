@@ -3,6 +3,8 @@ package jm.task.core.jdbc.service;
 import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
+
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -14,7 +16,7 @@ public class UserServiceImpl implements UserService {
         userDao = new UserDaoJDBCImpl();
     }
 
-    public void createUsersTable() {
+    public void createUsersTable() throws SQLException {
         userDao.createUsersTable();
     }
 
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getAllUsers();
     }
 
-    public void cleanUsersTable() {
+    public void cleanUsersTable() throws SQLException {
         userDao.cleanUsersTable();
     }
 
