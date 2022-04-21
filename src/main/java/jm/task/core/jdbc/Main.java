@@ -21,10 +21,10 @@ public class Main {
         userService.saveUser("Brigitte", "Bardot",  (byte)87);
 
         userService.getAllUsers();
-        userService.cleanUsersTable();
-        userService.dropUsersTable();
+        //userService.cleanUsersTable();
+        //userService.dropUsersTable();
 
-        Util.closeConnection();
+        //Util.getSessionFactory().close();
         System.out.println("Подключение закрыто");
    }
 }
